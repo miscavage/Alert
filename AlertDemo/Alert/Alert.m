@@ -8,9 +8,7 @@
 
 #import "Alert.h"
 
-
 BOOL doesBounce = NO;
-
 
 @interface Alert () <UIScrollViewDelegate> {
 
@@ -25,7 +23,7 @@ BOOL doesBounce = NO;
     CGFloat timeDuration;
     NSTimer *timer;
     
-    UIScrollView *scrollView;
+    UIScrollView *scrollView; //Needed for truncation of the title
 }
 
 @end
@@ -39,7 +37,6 @@ BOOL doesBounce = NO;
                    completion:(void (^)(void))completion {
     
     if ([super init]) {
-
         timeDuration = duration;
         titleString = title;
         
@@ -47,21 +44,23 @@ BOOL doesBounce = NO;
     }
     
     return self;
-    
 }
 
 #pragma mark Creation Methods
 
 - (void)configure {
+    [self setUpAlertView];
+    [self setUpTitleLabel];
+}
+
+- (void)setUpAlertView {
     alertView = [[UIView alloc] init];
     [alertView setFrame:[self alertRect]];
     [alertView setBackgroundColor:[UIColor colorWithRed:0.91 green:0.302 blue:0.235 alpha:1] /*#e84d3c*/];
-
-    [self setTitleLabel];
 }
 
-- (void)setTitleLabel {
-    
+- (void)setUpTitleLabel {
+
     if (!titleLabel) {
         CGRect rect = [self alertRect];
 
@@ -108,7 +107,6 @@ BOOL doesBounce = NO;
 }
 
 - (void)countTimePassed {
-    
     timePassed += 0.1;
     
     if (timePassed >= timeDuration) {
@@ -116,12 +114,12 @@ BOOL doesBounce = NO;
         timer = nil;
         [self dismissAlert];
     }
-    
 }
 
 #pragma mark UIScrollView Methods
 
 - (void)slideScrollView {
+    //Animate the ScrollView so you can see the entire title
     [UIScrollView beginAnimations:@"scrollAnimation" context:nil];
     [UIScrollView setAnimationDuration:timeDuration/1.5];
     [scrollView setContentOffset:CGPointMake(-scrollView.frame.size.width + scrollView.contentSize.width, 0)];
@@ -139,7 +137,7 @@ BOOL doesBounce = NO;
 }
 
 - (void)setAlertType:(AlertType)alertType {
-
+    
     if (alertType == AlertTypeError) {
         [alertView setBackgroundColor:[UIColor colorWithRed:0.91 green:0.302 blue:0.235 alpha:1] /*#e84d3c*/];
     }
@@ -149,7 +147,7 @@ BOOL doesBounce = NO;
     else if (alertType == AlertTypeWarning) {
         [alertView setBackgroundColor:[UIColor colorWithRed:1 green:0.804 blue:0 alpha:1] /*#ffcd00*/];
     }
-
+    
 }
 
 - (void)setBounces:(BOOL)bounces {
@@ -166,6 +164,7 @@ BOOL doesBounce = NO;
 }
 
 - (BOOL)prefersStatusBarHidden {
+    //Needed for Hiding the status bar
     return YES;
 }
 
@@ -196,7 +195,6 @@ BOOL doesBounce = NO;
 }
 
 - (void)dismissAlert {
-
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertWillDisappear:)]) {
@@ -221,7 +219,6 @@ BOOL doesBounce = NO;
         case AlertIncomingTransitionTypeFlip: {
             
             if (doesBounce) {
-#warning need to fix the bouncing
                 rect.origin.y = -90;
                 [alertView setFrame:rect];
                 
@@ -229,13 +226,18 @@ BOOL doesBounce = NO;
                     [alertView setFrame:[self alertRect]];
                 }];
                 
-                alertView.transform = CGAffineTransformMake(1, 0, 0, -1 , 0, alertView.transform.ty);
-                
-                [UIView animateWithDuration:0.25 animations:^{
-                    alertView.transform = CGAffineTransformIdentity;
+                alertView.transform = CGAffineTransformMake(1, 0, 0, -0.25, 0, alertView.transform.ty);
+
+                [UIView animateWithDuration:0.35 delay:0.18 usingSpringWithDamping:0.65 initialSpringVelocity:0.9 options:UIViewAnimationOptionTransitionNone animations:^{
+                    alertView.transform = CGAffineTransformMakeScale(1.1, 1.1);
                 } completion:^(BOOL finished) {
-                    [self finishShowing];
+                    [UIView animateWithDuration:0.25 animations:^{
+                        alertView.transform = CGAffineTransformIdentity;
+                    } completion:^(BOOL finished) {
+                        [self finishShowing];
+                    }];
                 }];
+                
             }
             else {
                 rect.origin.y = -90;
@@ -257,7 +259,6 @@ BOOL doesBounce = NO;
             break;
         }
         case AlertIncomingTransitionTypeSlideFromTop: {
-            
             rect.origin.y = -90;
             [alertView setFrame:rect];
             
@@ -373,11 +374,9 @@ BOOL doesBounce = NO;
 
     switch (trannyType) {
         case AlertOutgoingTransitionTypeFlip: {
-            finalRect.origin.y = -40;
-#warning fix this flip method
-            [UIView animateWithDuration:0.25 animations:^{
-                [alertView setFrame:finalRect];
-                alertView.transform = CGAffineTransformMake(1, 0, 0, -1 , 0, alertView.transform.ty);
+            
+            [UIView animateWithDuration:0.275 animations:^{
+                alertView.transform = CGAffineTransformMake(1, 0, 0, -0.05 , 0, alertView.transform.ty - 18.5);
             } completion:^(BOOL finished) {
                 [self finishDisappearing];
             }];
@@ -483,6 +482,5 @@ BOOL doesBounce = NO;
     UIScreen *mainScreen = [UIScreen mainScreen];
     return CGRectMake(-20, -10, mainScreen.bounds.size.width + 40, 74);
 }
-
 
 @end

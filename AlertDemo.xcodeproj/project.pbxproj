@@ -430,6 +430,7 @@
 				E8F471E91AE855EA00C461B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E8F471EA1AE855EA00C461B7 /* Build configuration list for PBXNativeTarget "AlertDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +439,7 @@
 				E8F471EC1AE855EA00C461B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

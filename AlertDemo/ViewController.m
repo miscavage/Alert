@@ -12,7 +12,8 @@
 BOOL bounces;
 BOOL hideStatus;
 
-@interface ViewController () <UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate> {
+@interface ViewController () <AlertDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate> {
+    
     Alert *alert;
     AlertIncomingTransitionType incomingType;
     AlertOutgoingTransitionType outgoingType;
@@ -22,7 +23,9 @@ BOOL hideStatus;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegment;
+
 @property (weak, nonatomic) IBOutlet UIButton *incomingBtn;
 @property (weak, nonatomic) IBOutlet UIButton *outgoingBtn;
 @property (weak, nonatomic) IBOutlet UIButton *bounceBtn;
@@ -41,15 +44,7 @@ BOOL hideStatus;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Tap to dismiss everything
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissEverything)];
-    [tap setDelegate:self];
-    [tap setNumberOfTapsRequired:1];
-    [self.view addGestureRecognizer:tap];
-    
-    incomingTypes = @[@"Flip", @"SlideFromLeft", @"SlideFromTop", @"SlideFromRight", @"GrowFromCenter", @"FadeIn", @"InYoFace"];
-    outgoingTypes = @[@"Flip", @"SlideToLeft", @"SlideToTop", @"SlideToRight", @"ShrinkToCenter", @"FadeAway", @"OutYoFace"];
-    
+    [self setUpTapToDismiss];
     [self setUpScrollView];
     [self setUpBtns];
     [self setUpPickers];
@@ -61,12 +56,15 @@ BOOL hideStatus;
     [self adjustScrollViewAnimated:NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark Setup Methods
+
+- (void)setUpTapToDismiss {
+    //Tap to dismiss everything
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissEverything)];
+    [tap setDelegate:self];
+    [tap setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:tap];
+}
 
 - (void)setUpScrollView {
     [scrollView setFrame:self.view.frame];
@@ -82,6 +80,9 @@ BOOL hideStatus;
 }
 
 - (void)setUpPickers {
+    
+    incomingTypes = @[@"Flip", @"SlideFromLeft", @"SlideFromTop", @"SlideFromRight", @"GrowFromCenter", @"FadeIn", @"InYoFace"];
+    outgoingTypes = @[@"Flip", @"SlideToLeft", @"SlideToTop", @"SlideToRight", @"ShrinkToCenter", @"FadeAway", @"OutYoFace"];
     
     UIPickerView *picker1 = [[UIPickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 180, self.view.frame.size.width, 180)];
     [picker1 setDelegate:self];
@@ -144,6 +145,8 @@ BOOL hideStatus;
         [statusBtn setTitle:@"Hide Status Bar" forState:UIControlStateNormal];
     }
 }
+
+#pragma mark Finding Methods
 
 - (AlertType)findOutAlertType{
     
@@ -305,7 +308,7 @@ BOOL hideStatus;
 
 - (IBAction)changeOutgoing:(id)sender {
     [self.view endEditing:YES];
-    NSLog(@"-");
+
     UIPickerView *picker1 = (UIPickerView *)[self.view viewWithTag:1];
     UIPickerView *picker2 = (UIPickerView *)[self.view viewWithTag:2];
     
@@ -326,6 +329,7 @@ BOOL hideStatus;
     alert = [[Alert alloc] initWithTitle:titleField.text duration:(float)durationField.text.floatValue completion:^{
         //
     }];
+    [alert setDelegate:self];
     [alert setShowStatusBar:hideStatus];
     [alert setAlertType:[self findOutAlertType]];
     [alert setIncomingTransition:[self findOutIncomingType]];
@@ -347,6 +351,24 @@ BOOL hideStatus;
 
     [picker1 setAlpha:0.0];
     [picker2 setAlpha:0.0];
+}
+
+#pragma mark Delegate Methods
+
+- (void)alertWillAppear:(Alert *)alert {
+
+}
+
+- (void)alertDidAppear:(Alert *)alert {
+
+}
+
+- (void)alertWillDisappear:(Alert *)alert {
+
+}
+
+- (void)alertDidDisappear:(Alert *)alert {
+
 }
 
 @end
