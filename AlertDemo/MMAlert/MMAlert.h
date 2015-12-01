@@ -38,11 +38,11 @@ typedef NS_ENUM(NSUInteger, AlertType) {
 };
 
 
-@class Alert;
+@class MMAlert;
 
 @protocol AlertDelegate;
 
-@interface Alert : UIView
+@interface MMAlert : UIView
 
 @property (nonatomic, weak) id <AlertDelegate> delegate;
 
@@ -79,15 +79,15 @@ typedef NS_ENUM(NSUInteger, AlertType) {
 @optional
 
 //Called when your Alert is transitioning to the top of the screen
-- (void)alertWillAppear:(Alert *)alert;
+- (void)alertWillAppear:(MMAlert *)alert;
 
 //Called when your Alert is at the top of the screen after animating
-- (void)alertDidAppear:(Alert *)alert;
+- (void)alertDidAppear:(MMAlert *)alert;
 
 //Called when your Alert is transitioning away from the top of the screen
-- (void)alertWillDisappear:(Alert *)alert;
+- (void)alertWillDisappear:(MMAlert *)alert;
 
 //Called when your Alert has disappeared from the screen
-- (void)alertDidDisappear:(Alert *)alert;
+- (void)alertDidDisappear:(MMAlert *)alert;
 
 @end

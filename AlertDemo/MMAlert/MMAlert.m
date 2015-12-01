@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 Mark Miscavage. All rights reserved.
 //
 
-#import "Alert.h"
+#import "MMAlert.h"
 
 BOOL doesBounce = NO;
 
-@interface Alert () <UIScrollViewDelegate> {
+@interface MMAlert () <UIScrollViewDelegate> {
 
     UIView *alertView;
     UILabel *titleLabel;
@@ -28,7 +28,7 @@ BOOL doesBounce = NO;
 
 @end
 
-@implementation Alert
+@implementation MMAlert
 
 #pragma mark Instance Types
 
