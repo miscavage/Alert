@@ -7,14 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "Alert.h"
+#import "MMAlert.h"
 
 BOOL bounces;
 BOOL hideStatus;
 
 @interface ViewController () <AlertDelegate, UIScrollViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIGestureRecognizerDelegate> {
     
-    Alert *alert;
+    MMAlert *alert;
     AlertIncomingTransitionType incomingType;
     AlertOutgoingTransitionType outgoingType;
     
@@ -326,7 +326,7 @@ BOOL hideStatus;
 
 - (IBAction)show:(id)sender {
     
-    alert = [[Alert alloc] initWithTitle:titleField.text duration:(float)durationField.text.floatValue completion:^{
+    alert = [[MMAlert alloc] initWithTitle:titleField.text duration:(float)durationField.text.floatValue completion:^{
         //
     }];
     [alert setDelegate:self];
@@ -355,19 +355,19 @@ BOOL hideStatus;
 
 #pragma mark Delegate Methods
 
-- (void)alertWillAppear:(Alert *)alert {
+- (void)alertWillAppear:(MMAlert *)alert {
 
 }
 
-- (void)alertDidAppear:(Alert *)alert {
+- (void)alertDidAppear:(MMAlert *)alert {
 
 }
 
-- (void)alertWillDisappear:(Alert *)alert {
+- (void)alertWillDisappear:(MMAlert *)alert {
 
 }
 
-- (void)alertDidDisappear:(Alert *)alert {
+- (void)alertDidDisappear:(MMAlert *)alert {
 
 }
 

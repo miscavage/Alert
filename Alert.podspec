@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'Alert'
-  spec.version          = '0.0.5'
+  spec.version          = '0.0.6'
   spec.license          = { :type => 'MIT' }
   spec.homepage         = 'https://github.com/miscavage/Alert'
   spec.authors          = { 'Mark Miscavage' => 'miscavage' }
