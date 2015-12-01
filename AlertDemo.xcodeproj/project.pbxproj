@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2DE9A151C0E435E0012B0A4 /* MMAlert.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E2DE9A141C0E435E0012B0A4 /* MMAlert.podspec */; };
+		E2DE9A191C0E43FD0012B0A4 /* MMAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE9A181C0E43FD0012B0A4 /* MMAlert.m */; };
 		E8F471CA1AE855EA00C461B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471C91AE855EA00C461B7 /* main.m */; };
 		E8F471CD1AE855EA00C461B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471CC1AE855EA00C461B7 /* AppDelegate.m */; };
 		E8F471D01AE855EA00C461B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471CF1AE855EA00C461B7 /* ViewController.m */; };
@@ -14,7 +16,6 @@
 		E8F471D51AE855EA00C461B7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F471D41AE855EA00C461B7 /* Images.xcassets */; };
 		E8F471D81AE855EA00C461B7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F471D61AE855EA00C461B7 /* LaunchScreen.xib */; };
 		E8F471E41AE855EA00C461B7 /* AlertDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471E31AE855EA00C461B7 /* AlertDemoTests.m */; };
-		E8F471EF1AE8560700C461B7 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471EE1AE8560700C461B7 /* Alert.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2DE9A141C0E435E0012B0A4 /* MMAlert.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MMAlert.podspec; path = ../MMAlert.podspec; sourceTree = "<group>"; };
+		E2DE9A171C0E43FD0012B0A4 /* MMAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlert.h; sourceTree = "<group>"; };
+		E2DE9A181C0E43FD0012B0A4 /* MMAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAlert.m; sourceTree = "<group>"; };
 		E8F471C41AE855EA00C461B7 /* AlertDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlertDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F471C81AE855EA00C461B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F471C91AE855EA00C461B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -41,8 +45,6 @@
 		E8F471DD1AE855EA00C461B7 /* AlertDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlertDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F471E21AE855EA00C461B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F471E31AE855EA00C461B7 /* AlertDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertDemoTests.m; sourceTree = "<group>"; };
-		E8F471ED1AE8560700C461B7 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Alert.h; path = Alert/Alert.h; sourceTree = "<group>"; };
-		E8F471EE1AE8560700C461B7 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Alert.m; path = Alert/Alert.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,9 +65,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2DE9A161C0E43FD0012B0A4 /* MMAlert */ = {
+			isa = PBXGroup;
+			children = (
+				E2DE9A171C0E43FD0012B0A4 /* MMAlert.h */,
+				E2DE9A181C0E43FD0012B0A4 /* MMAlert.m */,
+			);
+			path = MMAlert;
+			sourceTree = "<group>";
+		};
 		E8F471BB1AE855EA00C461B7 = {
 			isa = PBXGroup;
 			children = (
+				E2DE9A161C0E43FD0012B0A4 /* MMAlert */,
 				E8F471C61AE855EA00C461B7 /* AlertDemo */,
 				E8F471E01AE855EA00C461B7 /* AlertDemoTests */,
 				E8F471C51AE855EA00C461B7 /* Products */,
@@ -84,7 +96,6 @@
 		E8F471C61AE855EA00C461B7 /* AlertDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E8F471F01AE8560B00C461B7 /* Alert */,
 				E8F471CB1AE855EA00C461B7 /* AppDelegate.h */,
 				E8F471CC1AE855EA00C461B7 /* AppDelegate.m */,
 				E8F471CE1AE855EA00C461B7 /* ViewController.h */,
@@ -100,6 +111,7 @@
 		E8F471C71AE855EA00C461B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E2DE9A141C0E435E0012B0A4 /* MMAlert.podspec */,
 				E8F471C81AE855EA00C461B7 /* Info.plist */,
 				E8F471C91AE855EA00C461B7 /* main.m */,
 			);
@@ -121,15 +133,6 @@
 				E8F471E21AE855EA00C461B7 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E8F471F01AE8560B00C461B7 /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-				E8F471ED1AE8560700C461B7 /* Alert.h */,
-				E8F471EE1AE8560700C461B7 /* Alert.m */,
-			);
-			name = Alert;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F471D31AE855EA00C461B7 /* Main.storyboard in Resources */,
+				E2DE9A151C0E435E0012B0A4 /* MMAlert.podspec in Resources */,
 				E8F471D81AE855EA00C461B7 /* LaunchScreen.xib in Resources */,
 				E8F471D51AE855EA00C461B7 /* Images.xcassets in Resources */,
 			);
@@ -234,7 +238,7 @@
 			files = (
 				E8F471D01AE855EA00C461B7 /* ViewController.m in Sources */,
 				E8F471CD1AE855EA00C461B7 /* AppDelegate.m in Sources */,
-				E8F471EF1AE8560700C461B7 /* Alert.m in Sources */,
+				E2DE9A191C0E43FD0012B0A4 /* MMAlert.m in Sources */,
 				E8F471CA1AE855EA00C461B7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
