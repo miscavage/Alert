@@ -11,7 +11,7 @@
 BOOL doesBounce = NO;
 
 @interface MMAlert () <UIScrollViewDelegate> {
-
+    
     UIView *alertView;
     UILabel *titleLabel;
     NSString *titleString;
@@ -31,6 +31,12 @@ BOOL doesBounce = NO;
 @implementation MMAlert
 
 #pragma mark Instance Types
+
+
+- (instancetype)init {
+    return [self initWithTitle:@"" duration:0.0 completion:nil];
+}
+
 
 - (instancetype)initWithTitle:(NSString *)title
                      duration:(CGFloat)duration
@@ -60,10 +66,10 @@ BOOL doesBounce = NO;
 }
 
 - (void)setUpTitleLabel {
-
+    
     if (!titleLabel) {
         CGRect rect = [self alertRect];
-
+        
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, rect.origin.y + 44, rect.size.width - 60, 24)];
         [titleLabel setText:titleString];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -72,7 +78,7 @@ BOOL doesBounce = NO;
         [titleLabel setMinimumScaleFactor:14.0/16.0];
         
         CGSize size = [titleLabel.text sizeWithAttributes:@{NSFontAttributeName : titleLabel.font}];
-
+        
         if (size.width > titleLabel.bounds.size.width) {
             //Text is truncated, put in a scrollview and scroll that text across the top
             scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
@@ -98,7 +104,7 @@ BOOL doesBounce = NO;
 #pragma mark Timer Methods
 
 - (void)setTimer {
-
+    
     if (timeDuration != 0) {
         timePassed = 0.0;
         timer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(countTimePassed) userInfo:nil repeats:YES];
@@ -178,6 +184,18 @@ BOOL doesBounce = NO;
 
 #pragma mark Show/Dismiss Methods
 
+-(void) showAlert:(NSString *)title {
+    titleString = title;
+    titleLabel = nil;
+    [self setUpTitleLabel];
+    [self showAlert];
+}
+
+-(void) showAlert:(NSString *)title withDuration:(CGFloat)duration {
+    timeDuration = duration;
+    [self showAlert:title];
+}
+
 - (void)showAlert {
     [[[UIApplication sharedApplication] keyWindow] addSubview:self];
     [self addSubview:alertView];
@@ -196,11 +214,11 @@ BOOL doesBounce = NO;
 
 - (void)dismissAlert {
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertWillDisappear:)]) {
         [self.delegate alertWillDisappear:self];
     }
-
+    
     if (outgoingType) {
         [self configureOutgoingAnimationFor:outgoingType];
     }
@@ -214,7 +232,7 @@ BOOL doesBounce = NO;
 - (void)configureIncomingAnimationFor:(AlertIncomingTransitionType)trannyType {
     
     CGRect rect = [self alertRect];
-
+    
     switch (trannyType) {
         case AlertIncomingTransitionTypeFlip: {
             
@@ -227,7 +245,7 @@ BOOL doesBounce = NO;
                 }];
                 
                 alertView.transform = CGAffineTransformMake(1, 0, 0, -0.25, 0, alertView.transform.ty);
-
+                
                 [UIView animateWithDuration:0.35 delay:0.18 usingSpringWithDamping:0.65 initialSpringVelocity:0.9 options:UIViewAnimationOptionTransitionNone animations:^{
                     alertView.transform = CGAffineTransformMakeScale(1.1, 1.1);
                 } completion:^(BOOL finished) {
@@ -248,7 +266,7 @@ BOOL doesBounce = NO;
                 }];
                 
                 alertView.transform = CGAffineTransformMake(1, 0, 0, -1 , 0, alertView.transform.ty);
-
+                
                 [UIView animateWithDuration:0.25 animations:^{
                     alertView.transform = CGAffineTransformIdentity;
                 } completion:^(BOOL finished) {
@@ -330,7 +348,7 @@ BOOL doesBounce = NO;
             } completion:^(BOOL finished) {
                 [self finishShowing];
             }];
-
+            
             
             break;
         }
@@ -369,9 +387,9 @@ BOOL doesBounce = NO;
 }
 
 - (void)configureOutgoingAnimationFor:(AlertOutgoingTransitionType)trannyType {
-
+    
     CGRect finalRect = [self alertRect];
-
+    
     switch (trannyType) {
         case AlertOutgoingTransitionTypeFlip: {
             
@@ -407,7 +425,7 @@ BOOL doesBounce = NO;
         }
         case AlertOutgoingTransitionTypeSlideToRight: {
             finalRect.origin.x = finalRect.size.width;
-           
+            
             [UIView animateWithDuration:0.15 animations:^{
                 [alertView setFrame:finalRect];
             } completion:^(BOOL finished) {
@@ -417,7 +435,7 @@ BOOL doesBounce = NO;
             break;
         }
         case AlertOutgoingTransitionTypeShrinkToCenter: {
-
+            
             [UIView animateWithDuration:0.2 animations:^{
                 alertView.transform = CGAffineTransformMakeScale(0.25, 0.25);
             } completion:^(BOOL finished) {
