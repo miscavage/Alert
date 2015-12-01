@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E2DE9A111C0E37860012B0A4 /* MMAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE9A101C0E37860012B0A4 /* MMAlert.m */; };
+		E2DE9A131C0E427F0012B0A4 /* MMAlert.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E2DE9A121C0E427F0012B0A4 /* MMAlert.podspec */; };
 		E8F471CA1AE855EA00C461B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471C91AE855EA00C461B7 /* main.m */; };
 		E8F471CD1AE855EA00C461B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471CC1AE855EA00C461B7 /* AppDelegate.m */; };
 		E8F471D01AE855EA00C461B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F471CF1AE855EA00C461B7 /* ViewController.m */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		E2DE9A0F1C0E37860012B0A4 /* MMAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAlert.h; sourceTree = "<group>"; };
 		E2DE9A101C0E37860012B0A4 /* MMAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAlert.m; sourceTree = "<group>"; };
+		E2DE9A121C0E427F0012B0A4 /* MMAlert.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MMAlert.podspec; sourceTree = "<group>"; };
 		E8F471C41AE855EA00C461B7 /* AlertDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlertDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F471C81AE855EA00C461B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F471C91AE855EA00C461B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		E8F471C71AE855EA00C461B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E2DE9A121C0E427F0012B0A4 /* MMAlert.podspec */,
 				E8F471C81AE855EA00C461B7 /* Info.plist */,
 				E8F471C91AE855EA00C461B7 /* main.m */,
 			);
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F471D31AE855EA00C461B7 /* Main.storyboard in Resources */,
+				E2DE9A131C0E427F0012B0A4 /* MMAlert.podspec in Resources */,
 				E8F471D81AE855EA00C461B7 /* LaunchScreen.xib in Resources */,
 				E8F471D51AE855EA00C461B7 /* Images.xcassets in Resources */,
 			);
