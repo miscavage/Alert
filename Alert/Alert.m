@@ -159,7 +159,7 @@ BOOL doesBounce = NO;
 - (void)setShowStatusBar:(BOOL)showStatusBar {
     if (!showStatusBar) {
         //Set "View controller-based status bar appearance" = NO in info.plist
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        [UIApplication sharedApplication].statusBarHidden = YES;
     }
 }
 
@@ -195,8 +195,8 @@ BOOL doesBounce = NO;
 }
 
 - (void)dismissAlert {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
     if (self.delegate && [self.delegate respondsToSelector:@selector(alertWillDisappear:)]) {
         [self.delegate alertWillDisappear:self];
     }
