@@ -2,10 +2,12 @@
 
 ## • Screenshots and Gifs
 
-  <img align="left" src="http://i.imgur.com/4jqUDER.gif" alt="SS1" width="240" height="427"/>
-  <img align="center" src="http://i.imgur.com/HnF5Lvp.png" alt="SS2" width="240" height="427"/>
-  <img align="right" src="http://i.imgur.com/WBBZvmC.png" alt="SS3" width="240" height="427"/>
- 
+<img align="left" src="/Images/gif1.gif" alt="SS1" width="240" height="427"/>
+<img align="center" src="/Images/success1.png" alt="SS2" width="240" height="427"/>
+<img align="right" src="/Images/error1.png" alt="SS3" width="240" height="427"/>
+
+___
+
 ## • Installation
 
 Just drag and drop the "Alert" folder into your project, and make sure you check the "Copy items into destination group's folder" box. Then import Alert.h wherever you need it. 
